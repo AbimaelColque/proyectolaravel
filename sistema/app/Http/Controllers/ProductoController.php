@@ -41,7 +41,7 @@ class ProductoController extends Controller
         Producto::create($request->validated());
 
         return Redirect::route('productos.index')
-            ->with('success', 'Producto created successfully.');
+            ->with('success', 'Producto creado correctamente.');
     }
 
     /**
@@ -72,7 +72,7 @@ class ProductoController extends Controller
         $producto->update($request->validated());
 
         return Redirect::route('productos.index')
-            ->with('success', 'Producto updated successfully');
+            ->with('success', 'Producto actualizado correctamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -80,6 +80,6 @@ class ProductoController extends Controller
         Producto::find($id)->delete();
 
         return Redirect::route('productos.index')
-            ->with('success', 'Producto deleted successfully');
+            ->with('success', 'Producto eliminado correctamente.');
     }
 }
