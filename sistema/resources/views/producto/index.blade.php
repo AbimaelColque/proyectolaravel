@@ -36,12 +36,12 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Categoria Id</th>
+									<th >Categoria</th>
 									<th >Nombre</th>
 									<th >Precio</th>
 									<th >Cantidad</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,7 +49,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $producto->categoria_id }}</td>
+										<td >{{ $producto->categoria->nombre }}</td>
 										<td >{{ $producto->nombre }}</td>
 										<td >{{ $producto->precio }}</td>
 										<td >{{ $producto->cantidad }}</td>
