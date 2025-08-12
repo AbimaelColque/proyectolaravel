@@ -20,6 +20,12 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        th, td{
+            text-align:center !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
