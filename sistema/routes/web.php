@@ -10,5 +10,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('productos', App\Http\Controllers\ProductoController::class);
-Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
+Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
+Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware('auth');
