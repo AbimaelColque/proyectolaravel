@@ -2,59 +2,37 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * Class Compra
- *
- * @property $id
- * @property $fecha
- * @property $total
- * @property $created_at
- * @property $updated_at
- * @property $proveedor_id
- *
- * @property Proveedore $proveedore
- * @property DetalleCompra[] $detalleCompras
- * @property DetalleCompra[] $detalleCompras
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
 class Compra extends Model
 {
-    
-    protected $perPage = 20;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = ['fecha', 'total', 'proveedor_id'];
+    protected $fillable = [
+        'fecha',
+        'total',
+        'proveedor_id'
+    ];
 
+    protected $casts = [
+        'fecha' => 'date',
+        'total' => 'decimal:2'
+    ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function proveedore()
+    public function proveedor(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Proveedore::class, 'proveedor_id', 'id');
+        return $this->belongsTo(Proveedore::class);
     }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function detalleCompras()
+    public function proveedore(): BelongsTo
     {
-        return $this->hasMany(\App\Models\DetalleCompra::class, 'id', 'compra_id');
+        return $this->belongsTo(Proveedore::class);
     }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function detalleCompras()
+
+    public function detalles(): HasMany
     {
-        return $this->hasMany(\App\Models\DetalleCompra::class, 'id', 'compra_id');
+        return $this->hasMany(DetalleCompra::class);
     }
-    
 }

@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property Cliente $cliente
  * @property DetalleVenta[] $detalleVentas
- * @property DetalleVenta[] $detalleVentas
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -32,6 +31,11 @@ class Venta extends Model
      */
     protected $fillable = ['fecha', 'total', 'cliente_id'];
 
+    protected $casts = [
+        'fecha' => 'date',
+        'total' => 'decimal:2'
+    ];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -44,17 +48,10 @@ class Venta extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function detalleVentas()
+    public function detalles()
     {
-        return $this->hasMany(\App\Models\DetalleVenta::class, 'id', 'venta_id');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function detalleVentas()
-    {
-        return $this->hasMany(\App\Models\DetalleVenta::class, 'id', 'venta_id');
+        // return $this->hasMany(\App\Models\DetalleVenta::class, 'id', 'venta_id');
+        return $this->hasMany(DetalleVenta::class);
     }
     
 }

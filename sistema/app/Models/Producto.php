@@ -9,13 +9,17 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $categoria_id
+ * @property $proveedor_id
  * @property $nombre
- * @property $precio
+ * @property $precio_compra
+ * @property $precio_venta
  * @property $cantidad
  * @property $created_at
  * @property $updated_at
  *
  * @property Categoria $categoria
+ * @property Proveedore $proveedore
+ * @property DetalleCompra[] $detalleCompras
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -29,7 +33,7 @@ class Producto extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['categoria_id', 'nombre', 'precio', 'cantidad'];
+    protected $fillable = ['categoria_id', 'proveedor_id', 'nombre', 'precio_compra', 'precio_venta', 'cantidad'];
 
 
     /**
@@ -38,6 +42,22 @@ class Producto extends Model
     public function categoria()
     {
         return $this->belongsTo(\App\Models\Categoria::class, 'categoria_id', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function proveedore()
+    {
+        return $this->belongsTo(\App\Models\Proveedore::class, 'proveedor_id', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function detalleCompras()
+    {
+        return $this->hasMany(\App\Models\DetalleCompra::class, 'id', 'producto_id');
     }
     
 }

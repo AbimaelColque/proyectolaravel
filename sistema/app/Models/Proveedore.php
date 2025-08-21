@@ -51,12 +51,12 @@ class Proveedore extends Model
         return $this->hasMany(\App\Models\Compra::class, 'id', 'proveedor_id');
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function productos()
-    {
-        return $this->hasMany(\App\Models\Producto::class, 'id', 'proveedor_id');
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    //  */
+    // public function productos()
+    // {
+    //     return $this->hasMany(\App\Models\Producto::class, 'id', 'proveedor_id');
+    // }
     
 }
