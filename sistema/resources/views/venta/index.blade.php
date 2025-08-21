@@ -1,75 +1,46 @@
 @extends('layouts.app')
 
-@section('template_title')
-    Ventas
-@endsection
-
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+<div class="container">
+    <h1>Lista de Ventas</h1>
+    <a href="{{ route('ventas.create') }}" class="btn btn-primary mb-3">Nueva Venta</a>
 
-                            <span id="card_title">
-                                {{ __('Ventas') }}
-                            </span>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
-                             <div class="float-right">
-                                <a href="{{ route('ventas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
-                              </div>
-                        </div>
-                    </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success m-4">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
-                    <div class="card-body bg-white">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-									<th >Fecha</th>
-									<th >Total</th>
-									<th >Cliente Id</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($ventas as $venta)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $venta->fecha }}</td>
-										<td >{{ $venta->total }}</td>
-										<td >{{ $venta->cliente_id }}</td>
-
-                                            <td>
-                                                <form action="{{ route('ventas.destroy', $venta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('ventas.show', $venta->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('ventas.edit', $venta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                {!! $ventas->withQueryString()->links() !!}
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($ventas as $venta)
+                    <tr>
+                        <td>{{ $venta->id }}</td>
+                        <td>{{ $venta->fecha->format('d/m/Y') }}</td>
+                        <td>{{ $venta->cliente ? $venta->cliente->nombre : 'Sin cliente' }}</td>
+                        <td>${{ number_format($venta->total, 2) }}</td>
+                        <td>
+                            <a href="{{ route('ventas.show', $venta) }}" class="btn btn-info btn-sm">Ver</a>
+                            <form action="{{ route('ventas.destroy', $venta) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar venta?')">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 @endsection
