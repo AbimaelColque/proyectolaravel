@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Lista de Compras</h1>
+    <h1 class="text-white">Lista de Compras</h1>
     <a href="{{ route('compras.create') }}" class="btn btn-primary mb-3">Nueva Compra</a>
 
     @if(session('success'))
@@ -11,7 +11,7 @@
 
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped">
+            <table id="example" class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>

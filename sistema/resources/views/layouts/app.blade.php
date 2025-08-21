@@ -25,13 +25,29 @@
         th, td{
             text-align:center !important;
         }
+        
+        body{
+            background: url("https://static.vecteezy.com/system/resources/previews/052/302/850/non_2x/a-vibrant-and-colorful-array-of-fresh-fruits-and-vegetables-displayed-beautifully-in-a-wellstocked-grocery-store-photo.jpg");
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
+            
+        }
+        .login-fondo{
+            background-color: rgba(226, 226, 226, 0.8);
+        }
+        .nav-fondo{
+            background-color: rgba(150, 114, 18, 0.25)!important;
+        }
+    .nav-texto li{
+        color: #fff !important;
+    }
     </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm nav-fondo">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -41,25 +57,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @if(Auth::check())
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto nav-texto ">
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('Categorias') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('categorias.index') }}">{{ __('Categorias') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('proveedores.index') }}">{{ __('Proveedores') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('proveedores.index') }}">{{ __('Proveedores') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('compras.index') }}">{{ __('Compras') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('compras.index') }}">{{ __('Compras') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('clientes.index') }}">{{ __('Clientes') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('clientes.index') }}">{{ __('Clientes') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('ventas.index') }}">{{ __('Ventas') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('ventas.index') }}">{{ __('Ventas') }}</a>
                                 </li>
 
                     </ul>
@@ -70,13 +86,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -104,7 +120,9 @@
         </nav>
 
         <main class="py-4">
+        <div class="main-fondo">
             @yield('content')
+            </div>
         </main>
     </div>
 
@@ -146,19 +164,25 @@
                         extend:    'excelHtml5',
                         text:      '<i class="fas fa-file-excel"></i> ',
                         titleAttr: 'Exportar a Excel',
-                        className: 'btn btn-success'
+                        className: 'btn btn-success',
+                        exportOptions: { 
+                        columns: ':not(:last-child)'}
                     },
                     {
                         extend:    'pdfHtml5',
                         text:      '<i class="fas fa-file-pdf"></i> ',
                         titleAttr: 'Exportar a PDF',
-                        className: 'btn btn-danger'
+                        className: 'btn btn-danger',
+                        exportOptions: { 
+                        columns: ':not(:last-child)'}
                     },
                     {
                         extend:    'print',
                         text:      '<i class="fa fa-print"></i> ',
                         titleAttr: 'Imprimir',
-                        className: 'btn btn-info'
+                        className: 'btn btn-info',
+                        exportOptions: { 
+                        columns: ':not(:last-child)'}
                     },
                 ]	        
             });     
