@@ -16,9 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property Producto[] $productos
  * @property Compra[] $compras
- * @property Producto[] $productos
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -38,25 +36,9 @@ class Proveedore extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productos()
-    {
-        return $this->hasMany(\App\Models\Producto::class, 'id', 'proveedor_id');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function compras()
     {
-        return $this->hasMany(\App\Models\Compra::class, 'id', 'proveedor_id');
+        return $this->hasMany(\App\Models\Compra::class, 'id', 'proovedor_id');
     }
-    
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    //  */
-    // public function productos()
-    // {
-    //     return $this->hasMany(\App\Models\Producto::class, 'id', 'proveedor_id');
-    // }
     
 }

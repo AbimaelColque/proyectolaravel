@@ -25,12 +25,20 @@
                                     {{ $producto->categoria_id }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
+                                    <strong>Proveedor Id:</strong>
+                                    {{ $producto->proveedor_id }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
                                     <strong>Nombre:</strong>
                                     {{ $producto->nombre }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Precio:</strong>
-                                    {{ $producto->precio }}
+                                    <strong>Precio Compra:</strong>
+                                    {{ $producto->precio_compra }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Precio Venta:</strong>
+                                    {{ $producto->precio_venta }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Cantidad:</strong>

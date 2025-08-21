@@ -23,8 +23,10 @@ class ProductoRequest extends FormRequest
     {
         return [
 			'categoria_id' => 'required',
+			'proveedor_id' => 'required',
 			'nombre' => 'required|string',
-			'precio' => 'required',
+			'precio_compra' => 'required',
+			'precio_venta' => 'required',
 			'cantidad' => 'required',
         ];
     }

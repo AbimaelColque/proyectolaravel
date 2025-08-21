@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Agregar') }}
+                                  {{ __('Create New') }}
                                 </a>
                               </div>
                         </div>
@@ -31,14 +31,16 @@
 
                     <div class="card-body bg-white">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover" id="example">
+                            <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
                                         
 									<th >Categoria</th>
+									<th >Proveedor</th>
 									<th >Nombre</th>
-									<th >Precio</th>
+									<th >Precio Compra</th>
+									<th >Precio Venta</th>
 									<th >Cantidad</th>
 
                                         <th>Acciones</th>
@@ -50,17 +52,19 @@
                                             <td>{{ ++$i }}</td>
                                             
 										<td >{{ $producto->categoria->nombre }}</td>
+										<td >{{ $producto->proveedore->nombre }}</td>
 										<td >{{ $producto->nombre }}</td>
-										<td >{{ $producto->precio }}</td>
+										<td >{{ $producto->precio_compra }}</td>
+										<td >{{ $producto->precio_venta }}</td>
 										<td >{{ $producto->cantidad }}</td>
 
                                             <td>
                                                 <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('productos.show', $producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('productos.edit', $producto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('productos.show', $producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('productos.edit', $producto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Esta seguro de eliminarlo?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -40,7 +40,7 @@ class CategoriaController extends Controller
         Categoria::create($request->validated());
 
         return Redirect::route('categorias.index')
-            ->with('success', 'Categoria creada correctamente.');
+            ->with('success', 'Categoria created successfully.');
     }
 
     /**
@@ -71,7 +71,7 @@ class CategoriaController extends Controller
         $categoria->update($request->validated());
 
         return Redirect::route('categorias.index')
-            ->with('success', 'Categoria actualizada correctamente.');
+            ->with('success', 'Categoria updated successfully');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class CategoriaController extends Controller
         Categoria::find($id)->delete();
 
         return Redirect::route('categorias.index')
-            ->with('success', 'Categoria eliminada correctamente');
+            ->with('success', 'Categoria deleted successfully');
     }
 }

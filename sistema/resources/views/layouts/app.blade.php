@@ -43,11 +43,24 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('Categorias') }}</a>
-                        </li>
+                                    <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('Categorias') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('proveedores.index') }}">{{ __('Proveedores') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('compras.index') }}">{{ __('Compras') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('clientes.index') }}">{{ __('Clientes') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ventas.index') }}">{{ __('Ventas') }}</a>
+                                </li>
 
                     </ul>
                 @endif

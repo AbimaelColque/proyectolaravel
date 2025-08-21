@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-use App\Models\Categoria;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductoRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Categoria;
+use App\Models\Proveedore;
 
 class ProductoController extends Controller
 {
@@ -30,7 +31,8 @@ class ProductoController extends Controller
     {
         $producto = new Producto();
         $categorias = Categoria::all();
-        return view('producto.create', compact('producto','categorias'));
+        $proveedores = Proveedore::all();
+        return view('producto.create', compact('producto', 'categorias', 'proveedores'));
     }
 
     /**
@@ -41,7 +43,7 @@ class ProductoController extends Controller
         Producto::create($request->validated());
 
         return Redirect::route('productos.index')
-            ->with('success', 'Producto creado correctamente.');
+            ->with('success', 'Producto created successfully.');
     }
 
     /**
@@ -61,7 +63,8 @@ class ProductoController extends Controller
     {
         $producto = Producto::find($id);
         $categorias = Categoria::all();
-        return view('producto.edit', compact('producto','categorias'));
+        $proveedores = Proveedore::all();
+        return view('producto.edit', compact('producto', 'categorias','proveedores'));
     }
 
     /**
@@ -72,7 +75,7 @@ class ProductoController extends Controller
         $producto->update($request->validated());
 
         return Redirect::route('productos.index')
-            ->with('success', 'Producto actualizado correctamente.');
+            ->with('success', 'Producto updated successfully');
     }
 
     public function destroy($id): RedirectResponse
@@ -80,6 +83,6 @@ class ProductoController extends Controller
         Producto::find($id)->delete();
 
         return Redirect::route('productos.index')
-            ->with('success', 'Producto eliminado correctamente.');
+            ->with('success', 'Producto deleted successfully');
     }
 }

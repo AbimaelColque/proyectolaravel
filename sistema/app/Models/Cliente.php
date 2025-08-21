@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $updated_at
  *
  * @property Venta[] $ventas
- * @property Venta[] $ventas
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -41,13 +40,5 @@ class Cliente extends Model
     {
         return $this->hasMany(\App\Models\Venta::class, 'id', 'cliente_id');
     }
-    
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    //  */
-    // public function ventas()
-    // {
-    //     return $this->hasMany(\App\Models\Venta::class, 'id', 'cliente_id');
-    // }
     
 }

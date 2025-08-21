@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property Producto[] $productos
  * @property Producto[] $productos
+ * @property Producto[] $productos
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -37,6 +38,14 @@ class Categoria extends Model
     {
         return $this->hasMany(\App\Models\Producto::class, 'id', 'categoria_id');
     }
+    
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    //  */
+    // public function productos()
+    // {
+    //     return $this->hasMany(\App\Models\Producto::class, 'id', 'categoria_id');
+    // }
     
     // /**
     //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
