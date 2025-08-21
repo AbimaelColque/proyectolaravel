@@ -16,8 +16,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->bigInteger('proveedor_id')->unsigned();
+            $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('cascade');
             $table->string('nombre');
-            $table->decimal('precio');
+            $table->decimal('precio_compra', 10, 2);
+            $table->decimal('precio_venta', 10, 2);
             $table->integer('cantidad');
             $table->timestamps();
         });
